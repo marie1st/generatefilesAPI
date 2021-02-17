@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function clinic() {
         return $this->hasOne('App\Models\Clinic');
     }
+
+    public function Covid() {
+        return $this->hasMany('App\Models\Covid');
+    }
 }

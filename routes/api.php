@@ -21,6 +21,7 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
     Route::post('clinicupload', 'ClinicController@store');
+    Route::post('covidgen', 'ClinicController@covidgenerate');
     
   
     Route::group([
@@ -30,3 +31,5 @@ Route::group([
         Route::get('user', 'AuthController@user');
     });
 });
+
+Route::post('register', 'AuthController@signup');

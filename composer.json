@@ -16,6 +16,7 @@
         "laravel/helpers": "^1.4",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
+        "phpoffice/phpword": "^0.18.0",
         "wa72/url": "^0.7.1"
     },
     "require-dev": {
