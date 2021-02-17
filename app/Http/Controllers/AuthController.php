@@ -39,43 +39,28 @@ class AuthController extends Controller
           'token' => $token,
         ]);
       }
-    
     public function signup(Request $request)
-    {
-        $request->validate([
-            'clinic_name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'clinic_registration_number' => 'required|string',
-            'clinic_file1' =>'required|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
-            'password' => 'min:8|require_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'min:8',
-            'address' => 'required|string',
-            'country' => 'required|string',
-
-        ]);
-        $uploadedFile = $request->file('clinic_file1');
-        $filename = time().$uploadedFile->getClientOriginalName();
-
-        Storage::disk('local')->putFileAs('clinic_files', $uploadedFile, $filename);
-        $user = new User([
-            'clinic_name' => $request->clinic_name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'confirm_password' => bcrypt($request->confirm_password),
-            'clinic_registration_number' => $request->clinic_registration_number,
-            'clinic_file1' => $filename,
-            'address' => $request->address,
-            'country' => $request->country,
-        ]);
-
-
-        $user->save();
-        return response()->json([
-            'message' => 'Successfully created user!',
-            'clinic_file1' => 'http://localhost:8000/storage/app/clinic_files/'.$filename,
-        ], 200);
-    }
+      {
+          $request->validate([
+              'name' => 'required|string',
+              'email' => 'required|string|email|unique:users',
+              'password' => 'required|string|confirmed'
+          ]);
+          $user = new User([
+              'name' => $request->name,
+              'email' => $request->email,
+              'password' => bcrypt($request->password)
+              
+          ]);
   
+  
+          $user->save();
+          return response()->json([
+              'message' => 'Successfully created user!'
+          ], 201);
+      }
+
+    
     /**
      * Login user and create token
      *
