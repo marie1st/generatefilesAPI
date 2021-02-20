@@ -32,4 +32,4 @@ Route::group([
     });
 });
 
-Route::post('register', 'AuthController@signup');
+

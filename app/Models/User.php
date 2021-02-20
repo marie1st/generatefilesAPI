@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function Covid() {
         return $this->hasMany('App\Models\Covid');
     }
+
+    public function Fit() {
+        return $this->hasMany('App\Models\Fit');
+    }
 }

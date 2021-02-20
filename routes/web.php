@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/clinic', [App\Http\Controllers\ClinicController::class, 'index']);
 Route::get('/covidg', [App\Http\Controllers\ClinicController::class, 'covidview']);
+Auth::routes(['register'=>false]);
