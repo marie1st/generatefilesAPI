@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Clinic;
 use App\Models\Covid;
+use App\Models\Fit;
 use NcJoes\OfficeConverter\OfficeConverter;
 
 class ClinicController extends Controller
@@ -192,6 +193,7 @@ class ClinicController extends Controller
                 'phone1' => 'required|string',
                 'name5' => 'required|string',
                 'name6' => 'required|string',
+                'name7' => 'required|string',
                 'date3' => 'required|string',
                 'name6' => 'required|string',
                 'passport_no' => 'required|string',
@@ -210,7 +212,7 @@ class ClinicController extends Controller
             $hnumber = $request->hnumber;
             $bday = $request->bday;
             $date1 = $request->date1;
-            $agerage = $request->agerange;
+            $agerange = $request->agerange;
             $roomno = $request->roomno;
             $gendertype = $request->gendertype;
             $name2 = $request->name2;
@@ -278,6 +280,7 @@ class ClinicController extends Controller
                 'name5' => $request->name5,
                 'name6' => $request->name6,
                 'date3' => $request->date3,
+                'name7' => $request->name7,
                 'name6' => $request->name6,
                 'passport_no' => $request->passport_no,
                 'relationship1' => $request->relationship1,
@@ -291,7 +294,7 @@ class ClinicController extends Controller
             $file_fit = public_path('/storage/fit.docx');
             $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($file_fit);
             $phpWord->setValue('name1', $name1);
-            $phpWord->setValue('hnumber', $hnunber1);
+            $phpWord->setValue('hnumber', $hnumber);
             $phpWord->setValue('bday', $bday);
             $phpWord->setValue('roomno', $roomno);
             $phpWord->setValue('date1', $date1);

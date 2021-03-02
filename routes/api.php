@@ -22,6 +22,7 @@ Route::group([
     Route::post('signup', 'AuthController@signup');
     Route::post('clinicupload', 'ClinicController@store');
     Route::post('covidgen', 'ClinicController@covidgenerate');
+    Route::post('fitgen', 'ClinicController@fitgenerate');
     
   
     Route::group([

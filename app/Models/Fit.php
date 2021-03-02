@@ -49,6 +49,7 @@ class Fit extends Model
         'name6',
         'date3',
         'name6',
+        'name7',
         'passport_no',
         'relationship1',
         'language1',
