@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5279edb3f69e94c0131ba122760522c",
+    "content-hash": "64812f8138eed528542d61d353098439",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1820,6 +1820,56 @@
                 }
             ],
             "time": "2020-12-10T11:35:44+00:00"
+        },
+        {
+            "name": "mnvx/lowrapper",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mnvx/lowrapper.git",
+                "reference": "332c2bdad4de14fbb88bb40243473714c3947098"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mnvx/lowrapper/zipball/332c2bdad4de14fbb88bb40243473714c3947098",
+                "reference": "332c2bdad4de14fbb88bb40243473714c3947098",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2",
+                "psr/log": "^1.0",
+                "symfony/process": "^3.1|^4.1|^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mnvx\\Lowrapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP wrapper over LibreOffice converter",
+            "homepage": "https://github.com/mnvx/lowrapper",
+            "keywords": [
+                "LibreOffice",
+                "converter",
+                "docx",
+                "excel",
+                "pdf",
+                "word",
+                "xls",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/mnvx/lowrapper/issues",
+                "source": "https://github.com/mnvx/lowrapper/tree/1.0.7"
+            },
+            "time": "2020-11-10T08:46:55+00:00"
         },
         {
             "name": "monolog/monolog",

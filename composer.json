@@ -17,6 +17,7 @@
         "laravel/helpers": "^1.4",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
+        "mnvx/lowrapper": "^1.0",
         "mpdf/mpdf": "^8.0",
         "ncjoes/office-converter": "^1.0",
         "phpoffice/phpword": "^0.18.0",

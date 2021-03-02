@@ -144,6 +144,10 @@ class ClinicController extends Controller
             $pdfWriter->save($filenamePDF);
             //$converter = new OfficeConverter($filename);
             //$converter->convertTo($filenamePDFm);
+           // $converter = new Converter();
+            //$parameters = (new LowrapperParameters())->setInputFile($filename)
+                                                   // ->setOutputForm()
+                                                   // ->setOutputFile($filenamePDFm);
 
             $base_html = 'link?http://localhost:8000/storage/app/clinic_files/';
             $my_array = explode('?',$base_html);
