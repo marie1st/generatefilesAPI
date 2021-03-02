@@ -15,6 +15,7 @@ class Covids extends Migration
     {
         Schema::create('covids', function (Blueprint $table) {
             $table->id();
+            $table->string('email');
             $table->string('date1');
             $table->string('name1');
             $table->string('license_no');
@@ -25,6 +26,9 @@ class Covids extends Migration
             $table->string('name4');
             $table->string('name5');
             $table->string('address1');
+            $table->string('covid_filePDF');
+            $table->string('covid_fileDOCX');
+            $table->string('covid_fileJPEG');
             $table->timestamps();
         });
     }

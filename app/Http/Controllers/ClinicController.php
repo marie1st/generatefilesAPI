@@ -71,6 +71,7 @@ class ClinicController extends Controller
     public function covidgenerate(Request $request) 
         {
             $request->validate([
+                'email' => 'required|string',
                 'date1' => 'required|string',
                 'name1' => 'required|string',
                 'license_no' => 'required|string',
@@ -88,6 +89,12 @@ class ClinicController extends Controller
             $farray = explode('.',$filename);
             $pdfextension = ".pdf";
             $filenamePDF = $farray[0].$pdfextension;
+
+            $docxextension = ".docx";
+            $filenameDOCX = $farray[0].$docxextension;
+            $JPEGextension = ".jpeg";
+            $filenameJPEG = $farray[0].$JPEGextension;
+            $email = $request->email;
             $date1= $request->date1;
             $name1= $request->name1;
             $name7 = $request->license_no;
@@ -99,19 +106,6 @@ class ClinicController extends Controller
             $name5 = $request->name5;
             $name6 = $request->address1;
 
-            $covid = new Covid ([
-                'date1' => $request->date1,
-                'name1' => $request->name1,
-                'license_no' => $request->license_no,
-                'name2' => $request->name2,
-                'date2' => $request->date2,
-                'name3' => $request->name3,
-                'date3' => $request->date3,
-                'name4' => $request->name4,
-                'name5' => $request->name5,
-                'address1' => $request->address1,
-            ]);
-            $covid->save();
 
             $file_covid = public_path('/storage/covid.docx');
             $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($file_covid);
@@ -150,8 +144,29 @@ class ClinicController extends Controller
                                                    // ->setOutputForm()
                                                    // ->setOutputFile($filenamePDFm);
 
-            $base_html = 'link?http://localhost:8000/storage/app/clinic_files/';
+            $base_html = 'link?http://localhost:8000/public/';
             $my_array = explode('?',$base_html);
+            $covid_fileDOCX = $my_array[1].$filename;
+            $covid_filePDF = $my_array[1].$filenamePDF;
+            $covid_fileJPEG = $my_array[1].$filenameJPEG;
+
+            $covid = new Covid ([
+                'email' => $request->email,
+                'date1' => $request->date1,
+                'name1' => $request->name1,
+                'license_no' => $request->license_no,
+                'name2' => $request->name2,
+                'date2' => $request->date2,
+                'name3' => $request->name3,
+                'date3' => $request->date3,
+                'name4' => $request->name4,
+                'name5' => $request->name5,
+                'address1' => $request->address1,
+                'covid_filePDF' => $covid_filePDF,
+                'covid_fileDOCX' => $covid_fileDOCX,
+                'covid_fileJPEG' => $covid_fileJPEG
+            ]);
+            $covid->save();
             return response()->json([
                 'message' => 'Successfully generated CovidTemplate!',
                 'covid_file' => $my_array[1].$filenamePDF,
@@ -162,6 +177,7 @@ class ClinicController extends Controller
         public function fitgenerate(Request $request) 
         {
             $request->validate([
+                'email' => 'required|string',
                 'name1' => 'required|string',
                 'hnumber' => 'required|string',
                 'bday' => 'required|string',
@@ -208,6 +224,11 @@ class ClinicController extends Controller
             $farray = explode('.',$filename);
             $pdfextension = ".pdf";
             $filenamePDF = $farray[0].$pdfextension;
+            $docxextension = ".docx";
+            $filenameDOCX = $farray[0].$docxextension;
+            $JPEGextension = ".jpeg";
+            $filenameJPEG = $farray[0].$JPEGextension;
+            $email = $request->email;
             $name1 = $request->name1;
             $hnumber = $request->hnumber;
             $bday = $request->bday;
@@ -246,50 +267,6 @@ class ClinicController extends Controller
             $language1 = $request->language1;
             $witness1 = $request->witness1;
             $witness2 = $request->witness2;
-
-            $fit = new Fit ([
-                'name1' => $request->name1,
-                'hnumber' => $request->hnumber,
-                'bday' => $request->bday,
-                'date1' =>$request->date1,
-                'agerange' => $request->agerange,
-                'roomno' => $request->roomno,
-                'gendertype' => $request->gendertype,
-                'name2' => $request->name2,
-                'date2' => $request->date2,
-                'timerange' => $request->timerange,
-                'name3' => $request->name3,
-                'D1' => $request->D1,
-                'D2' => $request->D2,
-                'D3' => $request->D3,
-                'D4' => $request->D4,
-                'D5' => $request->D5,
-                'D6' => $request->D6,
-                'E1' => $request->E1,
-                'E2' => $request->E2,
-                'E3' => $request->E3,
-                'E4' => $request->E4,
-                'E5' => $request->E5,
-                'E6' => $request->E6,
-                'E7' => $request->E7,
-                'E8' => $request->E8,
-                'E9' => $request->E9,
-                'name4' => $request->name4,
-                'licensem' => $request->licensem,
-                'phone1' => $request->phone1,
-                'name5' => $request->name5,
-                'name6' => $request->name6,
-                'date3' => $request->date3,
-                'name7' => $request->name7,
-                'name6' => $request->name6,
-                'passport_no' => $request->passport_no,
-                'relationship1' => $request->relationship1,
-                'language1' => $request->language1,
-                'witness1' => $request->witness1,
-                'witness2' => $request->witness2
-    
-            ]);
-            $fit->save();
 
             $file_fit = public_path('/storage/fit.docx');
             $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($file_fit);
@@ -333,6 +310,8 @@ class ClinicController extends Controller
             $phpWord->setValue('witness2', $witness2);
 
             $phpWord->saveAs($filename);
+
+            
             
             $FilePath = '/public'.$filename;
             $FilePathPdf = "/storage/app/public/fit/".$filenamePDF;
@@ -342,9 +321,63 @@ class ClinicController extends Controller
             \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
             $pdfWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWordM, 'PDF' );
             $pdfWriter->save($filenamePDF);
+            
 
-            $base_html = 'link?http://localhost:8000/storage/app/clinic_files/';
+            $base_html = 'link?http://localhost:8000/public/';
             $my_array = explode('?',$base_html);
+            $fit_fileDOCX = $my_array[1].$filename;
+            $fit_filePDF = $my_array[1].$filenamePDF;
+            $fit_fileJPEG = $my_array[1].$filenameJPEG;
+
+
+            $fit = new Fit ([
+                'email' => $request->email,
+                'name1' => $request->name1,
+                'hnumber' => $request->hnumber,
+                'bday' => $request->bday,
+                'date1' =>$request->date1,
+                'agerange' => $request->agerange,
+                'roomno' => $request->roomno,
+                'gendertype' => $request->gendertype,
+                'name2' => $request->name2,
+                'date2' => $request->date2,
+                'timerange' => $request->timerange,
+                'name3' => $request->name3,
+                'D1' => $request->D1,
+                'D2' => $request->D2,
+                'D3' => $request->D3,
+                'D4' => $request->D4,
+                'D5' => $request->D5,
+                'D6' => $request->D6,
+                'E1' => $request->E1,
+                'E2' => $request->E2,
+                'E3' => $request->E3,
+                'E4' => $request->E4,
+                'E5' => $request->E5,
+                'E6' => $request->E6,
+                'E7' => $request->E7,
+                'E8' => $request->E8,
+                'E9' => $request->E9,
+                'name4' => $request->name4,
+                'licensem' => $request->licensem,
+                'phone1' => $request->phone1,
+                'name5' => $request->name5,
+                'name6' => $request->name6,
+                'date3' => $request->date3,
+                'name7' => $request->name7,
+                'name6' => $request->name6,
+                'passport_no' => $request->passport_no,
+                'relationship1' => $request->relationship1,
+                'language1' => $request->language1,
+                'witness1' => $request->witness1,
+                'witness2' => $request->witness2,
+                'fit_filePDF' => $fit_filePDF,
+                'fit_fileDOCX' => $fit_fileDOCX,
+                'fit_fileJPEG' => $fit_fileJPEG
+    
+            ]);
+            $fit->save();
+
             return response()->json([
                 'message' => 'Successfully generated CovidTemplate!',
                 'fit_file' => $my_array[1].$filenamePDF,
@@ -352,5 +385,38 @@ class ClinicController extends Controller
 
         }
 
-  
+    public function requestcovidfile(Request $request) {
+            $request->validate([
+            'email' => 'required|string|email',
+            ]);
+            $email = $request->email;
+            $covids = Covid::where('email', $email)->first();
+            $covid_docx = $covids->covid_fileDOCX;
+            $covid_pdf = $covids->covid_filePDF;
+            $covid_jpeg = $covids->covid_fileJPEG;
+            return response()->json([
+                    'covid_docx' => $covid_docx,
+                    'covid_pdf' => $covid_pdf,
+                    'covid_jpeg' => $covid_jpeg
+            ], 200);
+            
+
+    }
+
+    public function requestfitfile(Request $request) {
+        $request->validate([
+            'email' => 'required|string|email',
+        ]);
+        $email = $request->email;
+        $fits = Fit::where('email', $email)->first();
+        $fit_docx = $fits->fit_fileDOCX;
+        $fit_pdf = $fits->fit_filePDF;
+        $fit_jpeg = $fits->fit_fileJPEG;
+        return response()->json([
+                'fit_docx' => $fit_docx,
+                'fit_pdf' => $fit_pdf,
+                'fit_jpeg' => $fit_jpeg
+        ], 200);
+        
+}
 }

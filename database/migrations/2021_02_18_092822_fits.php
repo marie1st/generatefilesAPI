@@ -15,6 +15,7 @@ class Fits extends Migration
     {
         Schema::create('fits', function (Blueprint $table) {
             $table->id();
+            $table->string('email');
             $table->string('name1');
             $table->string('hnumber');
             $table->string('date1');
@@ -53,6 +54,9 @@ class Fits extends Migration
             $table->string('language1');
             $table->string('witness1');
             $table->string('witness2');
+            $table->string('fit_filePDF');
+            $table->string('fit_fileDOCX');
+            $table->string('fit_fileJPEG');
             $table->timestamps();
         });
     }

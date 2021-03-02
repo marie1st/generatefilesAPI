@@ -15,7 +15,7 @@ class Fit extends Model
      * @var array
      */
     protected $fillable = [
-  
+        'email',
         'name1',
         'hnumber',
         'bday',
@@ -55,6 +55,9 @@ class Fit extends Model
         'language1',
         'witness1',
         'witness2',
+        'fit_filePDF',
+        'fit_fileDOCX',
+        'fit_fileJPEG',
 
     ];
 

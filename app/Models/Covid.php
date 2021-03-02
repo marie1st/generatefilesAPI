@@ -15,6 +15,7 @@ class Covid extends Model
      * @var array
      */
     protected $fillable = [
+        'email',
         'date1',
         'name1',
         'license_no',
@@ -25,6 +26,9 @@ class Covid extends Model
         'name4',
         'name5',
         'address1',
+        'covid_filePDF',
+        'covid_fileDOCX',
+        'covid_fileJPEG',
 
     ];
 
