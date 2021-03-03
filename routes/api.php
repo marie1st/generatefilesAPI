@@ -23,8 +23,11 @@ Route::group([
     Route::post('clinicupload', 'ClinicController@store');
     Route::post('covidgen', 'ClinicController@covidgenerate');
     Route::post('fitgen', 'ClinicController@fitgenerate');
+    Route::post('torgen', 'ClinicController@tor8generate');
     Route::post('covidfiles', 'ClinicController@requestcovidfile');
     Route::post('fitfiles', 'ClinicController@requestfitfile');
+    Route::post('torfiles', 'ClinicController@requesttor8file');
+   
     
   
     Route::group([

@@ -54,4 +54,12 @@ class User extends Authenticatable
     public function Fit() {
         return $this->hasMany('App\Models\Fit');
     }
+
+    public function TOR8() {
+        return $this->hasMany('App\Models\TOR8');
+    }
+
+    public function Files() {
+        return $this->hasMany('App\Models\Files');
+    }
 }
